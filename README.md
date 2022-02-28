@@ -1,6 +1,8 @@
 # kitty-warrior
 
 
+## Setup environment
+
 1. Login under root
 1. Select username for your accout. For example `andrew`.
 
@@ -29,7 +31,10 @@ su - ${USER}
 
 ```
 
-1. Setup project
+## Setup project for attack
+
+1. Clone repository
+2. Edit list of targets in `resources.txt`
 
 ```
 git clone https://github.com/going-forward/kitty-warrior.git
