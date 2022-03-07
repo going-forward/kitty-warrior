@@ -3,15 +3,10 @@
 while IFS= read -r line; do
     echo "Server: $line";
     server_ip=`echo $line | awk -F ";" '{print $1}'`
-    server_processes=`echo $line | awk -F ";" '{print $2}'`
-
-    scp "${2}" andrew@$server_ip:/home/andrew/ddos/targets.txt
 ssh -T andrew@$server_ip <<_EOF_
   cd /home/andrew/ddos
-  ./run_all.sh targets.txt $server_processes "${3}"
+  git pull
 _EOF_
-
-#    echo "Params: $server_ip --- $server_processes"
 
     echo "Server: $line. Done"
     echo "\n";
