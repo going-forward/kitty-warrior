@@ -9,7 +9,7 @@ ssh -T andrew@$server_ip <<_EOF_
 _EOF_
 
     echo "Server: $line. Done"
-    echo "\n";
+    echo "";
 done < "${1}"
 
 
