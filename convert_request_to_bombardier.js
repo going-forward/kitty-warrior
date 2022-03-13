@@ -2,7 +2,7 @@ const connections = 1;
 const duration = '5s';
 
 const method = 'POST';
-const url = 'http://localhost:9999/authorize';
+const url = 'http://localhost:3000/auth';
 
 const headers = `User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0
 Accept: image/avif,image/webp,*/*
@@ -16,7 +16,6 @@ Te: trailers
 Content-Type: application/x-www-form-urlencoded`
 
 const body = "version=3.0&pan=YWFhYWFhYWE=&expiry=YWFhYWFhYQ==&deviceCategory=0&purchAmount=100&purchaseDate=20220308+14:11:11&exponent=2&description=aaaaa&currency=643&merchantID=wildberries&merchantCountry=643&xid=MTIzNDEyMzQzMjE0&recurFreq=&recurEnd=&installments=&okUrl=https://ds1.mirconnect.ru/vbv/pareq&failUrl=https://ds1.mirconnect.ru/vbv/pareq&merchantName=wildberries&acqBIN=546901&merchantUrl=http://wildberries.ru/&dsMerchantId=20000000&utid=14999999&digest=YWFhYWFhYWFhYWFh&lastEventGmtTime=2022-03-08+14:11:11.123"
-
 
 const parseHeaders = (headersRaw) => {
     const parsed = {};
@@ -47,7 +46,7 @@ const escapeHeaderValue = (val) => {
 const headersParams = prepareHeadersForBombarider(parseHeaders(headers))
 
 
-const result = `docker run --platform linux/amd64 -d alpine/bombardier -m ${method} -c ${connections} -p r -d ${duration} -b "${escapeHeaderValue(body)}" ${headersParams} -l  ${url}`
+const result = `docker run --platform linux/amd64 -d alpine/bombardier -m ${method} -c ${connections} -p r -d ${duration} "${body ? `-b  ${escapeHeaderValue(body)}` : ""}" ${headersParams} -l  ${url}`
 
 console.log(result)
 
