@@ -12,5 +12,4 @@ sudo apt install -y docker-ce
 sudo systemctl status docker
 sudo apt-get install -y nmap
 sudo usermod -aG docker ${USER}
-git clone https://github.com/going-forward/kitty-warrior.git ddos
 _EOF_
